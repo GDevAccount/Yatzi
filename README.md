@@ -1,0 +1,2 @@
+# Yatzi
+YATZI Kata refactoring
