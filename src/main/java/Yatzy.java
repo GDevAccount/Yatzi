@@ -57,15 +57,17 @@ public class Yatzy {
     }
 
     public static int fourOfAKind(Roll roll) {
-        Map<Integer, Integer> occurences = getMinimumOccurencesMap(roll, 4);
-        return occurences.isEmpty() ? 0 : occurences.keySet().stream().reduce(0, (prev, current) -> prev + (current * 4));
+        Set<Integer> occurences = getMinimumOccurences(roll, 4);
+        return occurences.stream().findFirst().orElse(0) * 4;
     }
 
     public static int fullHouse(Roll roll) {
-        Map<Integer, Integer> occurences = getMinimumOccurencesMap(roll, 2);
-        return (occurences.size() < 2 ||
-                occurences.values().stream().mapToInt(v -> v).max().orElse(0) < 3) ?
-                0 : roll.dices.stream().reduce(0, Integer::sum);
+        return getMinimumOccurences(roll,2).size() == 2 && getMinimumOccurences(roll,3).size() == 1 ?
+                roll.dices.stream().reduce(0, Integer::sum) : 0;
+    }
+
+    public static Set<Integer> getMinimumOccurences(Roll roll, int occurence) {
+        return roll.dices.stream().filter((dice) -> Collections.frequency(roll.dices,dice) >= occurence).collect(Collectors.toSet());
     }
 
     public static Map<Integer, Integer> getMinimumOccurencesMap(Roll roll, int occurence) {
@@ -86,6 +88,7 @@ public class Yatzy {
                 roll.dices.stream().mapToInt(v -> v).min().orElse(6) < 2)
                 ? 0 : 20;
     }
+
 }
 
 
