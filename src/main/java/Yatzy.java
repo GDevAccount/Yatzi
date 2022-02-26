@@ -51,6 +51,11 @@ public class Yatzy {
         return occurences.size() < 2 ? 0 : occurences.keySet().stream().reduce(0, (prev, current) -> prev + (current * 2));
     }
 
+    public static int threeOfAKind(Roll roll) {
+        Map<Integer, Integer> occurences = getMinimumOccurencesMap(roll, 3);
+        return occurences.isEmpty() ? 0 : occurences.keySet().stream().reduce(0, (prev, current) -> prev + (current * 3));
+    }
+
     public static Map<Integer, Integer> getMinimumOccurencesMap(Roll roll, int occurence) {
         Map<Integer, Integer> result = roll.dices.stream()
                 .collect(Collectors.toMap(Function.identity(), value -> 1, Integer::sum));
@@ -70,21 +75,6 @@ public class Yatzy {
         for (int i = 0; i < 6; i++)
             if (tallies[i] >= 4)
                 return (i+1) * 4;
-        return 0;
-    }
-
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] t;
-        t = new int[6];
-        t[d1-1]++;
-        t[d2-1]++;
-        t[d3-1]++;
-        t[d4-1]++;
-        t[d5-1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i+1) * 3;
         return 0;
     }
 
