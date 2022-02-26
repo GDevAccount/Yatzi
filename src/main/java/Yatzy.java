@@ -42,7 +42,7 @@ public class Yatzy {
 
     public static int pair(Roll roll) {
         Map<Integer, Integer> occurences = getMinimumOccurencesMap(roll, 2);
-        return Collections.max(occurences.keySet()) * 2;
+        return occurences.isEmpty() ? 0 :Collections.max(occurences.keySet()) * 2;
 
     }
 

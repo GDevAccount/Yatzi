@@ -70,7 +70,7 @@ public class YatzyTest {
     }
 
     @Test
-    public void sixes_test() {
+    public void sixes() {
         assertEquals(0, Yatzy.sixes(new Roll(4,4,4,5,5)));
         assertEquals(6, Yatzy.sixes(new Roll(4,4,6,5,5)));
         assertEquals(12, Yatzy.sixes(new Roll(6,5,4,1,6)));
@@ -80,7 +80,8 @@ public class YatzyTest {
     }
     
     @Test
-    public void one_pair() {
+    public void onePair() {
+        assertEquals(0, Yatzy.pair(new Roll(1,3,4,5,6)));
         assertEquals(8, Yatzy.pair(new Roll(3,3,3,4,4)));
         assertEquals(6, Yatzy.pair(new Roll(3,4,3,5,6)));
         assertEquals(10, Yatzy.pair(new Roll(5,3,3,3,5)));
@@ -88,7 +89,7 @@ public class YatzyTest {
     }
 
     @Test
-    public void two_Pair() {
+    public void twoPair() {
         assertEquals(16, Yatzy.two_pair(3,3,5,4,5));
         assertEquals(16, Yatzy.two_pair(3,3,5,5,5));
     }
