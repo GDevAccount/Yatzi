@@ -108,9 +108,12 @@ public class YatzyTest {
     }
 
     @Test
-    public void four_of_a_knd() {
-        assertEquals(12, Yatzy.four_of_a_kind(3,3,3,3,5));
-        assertEquals(20, Yatzy.four_of_a_kind(5,5,5,4,5));
+    public void fourOfAKind() {
+        assertEquals(0, Yatzy.fourOfAKind(new Roll(1,3,6,4,5)));
+        assertEquals(0, Yatzy.fourOfAKind(new Roll(1,3,3,1,5)));
+        assertEquals(0, Yatzy.fourOfAKind(new Roll(3,3,3,4,5)));
+        assertEquals(12, Yatzy.fourOfAKind(new Roll(3,3,3,3,5)));
+        assertEquals(20, Yatzy.fourOfAKind(new Roll(5,5,5,4,5)));
     }
 
     @Test
