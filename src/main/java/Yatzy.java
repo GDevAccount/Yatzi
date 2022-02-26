@@ -46,32 +46,16 @@ public class Yatzy {
 
     }
 
+    public static int twoPair(Roll roll) {
+        Map<Integer, Integer> occurences = getMinimumOccurencesMap(roll, 2);
+        return occurences.size() < 2 ? 0 : occurences.keySet().stream().reduce(0, (prev, current) -> prev + (current * 2));
+    }
+
     public static Map<Integer, Integer> getMinimumOccurencesMap(Roll roll, int occurence) {
         Map<Integer, Integer> result = roll.dices.stream()
                 .collect(Collectors.toMap(Function.identity(), value -> 1, Integer::sum));
         result.values().removeIf(nbOccurence -> nbOccurence < occurence);
         return result;
-    }
-
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] counts = new int[6];
-        counts[d1-1]++;
-        counts[d2-1]++;
-        counts[d3-1]++;
-        counts[d4-1]++;
-        counts[d5-1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6-i-1] >= 2) {
-                n++;
-                score += (6-i);
-            }        
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
     }
 
     public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5)
